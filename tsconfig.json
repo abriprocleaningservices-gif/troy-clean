@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"] }
   },
-  "include": ["src", "netlify/functions"]
+  "include": ["src"] "netlify/functions"]
 }
 {
   "compilerOptions": {
