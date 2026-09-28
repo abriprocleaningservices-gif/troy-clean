@@ -1,0 +1,59 @@
+# =============================================================================
+# Troy Premier Green Cleaning Co. — Environment Variables
+# Copy this file to .env (local dev) and set the same keys in the Netlify
+# dashboard under Site settings > Environment variables for production.
+#
+# NEVER commit a real .env file. NEVER put secret/service-role keys in any
+# variable prefixed VITE_ — those are bundled into the public frontend.
+# =============================================================================
+
+# ---- Supabase (frontend-safe) ----------------------------------------------
+VITE_SUPABASE_URL=https://YOUR-PROJECT-REF.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-public-key
+
+# ---- Supabase (server-only, used in Netlify Functions, NEVER exposed to frontend) ----
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+
+# ---- Stripe ------------------------------------------------------------------
+# Publishable key is safe for the frontend.
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_xxx
+# Secret key is server-only. Used in netlify/functions/create-checkout-session.ts
+STRIPE_SECRET_KEY=sk_test_xxx
+# Webhook signing secret from `stripe listen` or the Stripe dashboard webhook config.
+STRIPE_WEBHOOK_SECRET=whsec_xxx
+
+# ---- Twilio (server-only) ----------------------------------------------------
+TWILIO_ACCOUNT_SID=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+TWILIO_AUTH_TOKEN=your-twilio-auth-token
+TWILIO_FROM_NUMBER=+12485550100
+
+# ---- Transactional email (server-only). Default provider: Resend -------------
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+EMAIL_FROM_ADDRESS="Troy Premier Green Cleaning <bookings@tpgcleaning.com>"
+
+# ---- Internal function-to-function auth (server-only) --------------------------
+# send-sms / send-email / google-calendar-sync are reachable over the public
+# internet like any Netlify Function URL. They require this shared secret in
+# an `x-internal-secret` header, which the other server functions attach
+# automatically. Generate a long random value, e.g. `openssl rand -hex 32`.
+INTERNAL_FUNCTIONS_SECRET=replace-with-a-long-random-value
+
+# ---- Google Calendar (server-only) --------------------------------------------
+GOOGLE_CALENDAR_CLIENT_ID=your-oauth-client-id.apps.googleusercontent.com
+GOOGLE_CALENDAR_CLIENT_SECRET=your-oauth-client-secret
+GOOGLE_CALENDAR_REFRESH_TOKEN=your-long-lived-refresh-token
+GOOGLE_CALENDAR_ID=primary
+
+# ---- Spam protection -----------------------------------------------------------
+# hCaptcha or reCAPTCHA site/secret key for public forms (quote requests, leads).
+VITE_HCAPTCHA_SITE_KEY=10000000-ffff-ffff-ffff-000000000001
+HCAPTCHA_SECRET_KEY=0x0000000000000000000000000000000000000
+
+# ---- Analytics (frontend-safe) --------------------------------------------------
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+VITE_META_PIXEL_ID=000000000000000
+
+# ---- App config -------------------------------------------------------------
+VITE_SITE_URL=https://tpgcleaning.com
+VITE_BUSINESS_PHONE="+1 (947) 282-2131"
+VITE_BUSINESS_EMAIL=help@tpgcleaning.com
