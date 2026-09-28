@@ -19,3 +19,8 @@
   },
   "include": ["src", "netlify/functions"]
 }
+{
+  "compilerOptions": {
+    "types": ["vite/client"]
+  }
+}
